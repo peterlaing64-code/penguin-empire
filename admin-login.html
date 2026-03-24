@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+    <title>Panguin Empire! - Admin Access</title>
+    <style>
+      /* Keeping your original styles */
+      body {
+        background: #232526;
+        background: linear-gradient(to right, #414345, #232526);
+        color: white;
+      }
+      .container { width: 100%; max-width: 540px; margin: 0 auto; padding: 15px; }
+      form { border-radius: 5px; background-color: #000000a2; padding: 20px; margin-top: 20px; }
+      input[type=text] { width: 100%; padding: 12px; margin: 8px 0; border-radius: 4px; border: 1px solid #ccc; color: black; }
+      input[type=submit] { width: 100%; background-color: #d9534f; color: white; padding: 14px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+      input[type=submit]:hover { background-color: #c9302c; }
+      .contact { text-align: center; color: #fdf5e6; margin-top: 50px; }
+      .info { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    </style>
+    <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
+  </head>
+<body>
+
+<div class="container">
+    <form onsubmit="event.preventDefault(); checkAdminCode();">
+        <label for="codeWord" style="font-weight: bold; color: #fdf5e6;">ADMIN LOGIN:</label><br>
+        <input type="text" id="codeWord" placeholder="Enter Admin Passcode..." value=""><br>
+        <input type="submit" value="VERIFY ADMIN IDENTITY">
+    </form> 
+
+    <script>
+    function checkAdminCode() {
+      const input = document.getElementById("codeWord").value.trim();
+      const savedCode = localStorage.getItem("validPasscode");
+
+      // Check if it's the master admin password
+      const isMasterAdmin = (input === "admin_penguin");
+      
+      // Check if it's a generated Admin code (Starts with ADM-)
+      const isGeneratedAdmin = (savedCode && savedCode.startsWith("ADM-") && input === savedCode);
+
+      if (isMasterAdmin || isGeneratedAdmin) {
+        // Success!
+        window.location.href = "admin.html"; 
+      } else {
+        alert("❌ UNAUTHORIZED: Access Denied to Admin Sector!");
+      }
+    }
+    </script>
+
+    <br><br>
+    <h1 style="text-align: center; color: #ff4d4d;">DON'T YOU DARE TRY THE WRONG PASSWORD!</h1>
+    
+    <div style="height: 100px;"></div>
+
+    <div class="contact">
+      <p><span style="font-weight: bolder;">CONTACT OVERLORD</span></p>
+      <div class="info">
+        <a href="tel:(+38)935-3926-192"><span><i data-feather="phone"></i> (+38)935-3926-192</span></a>
+        <a href="mailto:penguin_hacker@outlook.com"><span><i data-feather="mail"></i> penguin_hacker@outlook.com</span></a>
+      </div>
+    </div>
+
+    <div class="contact">
+      <p><span style="font-weight: bolder;">HQ LOCATION</span></p>
+      <iframe src="https://maps.google.com" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>
